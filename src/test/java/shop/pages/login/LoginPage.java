@@ -1,4 +1,4 @@
-package shop.pages;
+package shop.pages.login;
 
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;

@@ -1,4 +1,4 @@
-package shop.pages;
+package shop.pages.compra;
 
 public class ProductoPage {
 }
