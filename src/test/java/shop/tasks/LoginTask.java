@@ -6,7 +6,7 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import shop.model.ActorUsuario;
-import shop.pages.LoginPage;
+import shop.pages.login.LoginPage;
 
 public class LoginTask implements Task {
 
