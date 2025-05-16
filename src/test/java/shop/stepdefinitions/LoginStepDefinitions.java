@@ -8,6 +8,8 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 
 import static net.serenitybdd.screenplay.waits.WaitUntil.the;
+
+import net.serenitybdd.screenplay.actions.Click;
 import org.openqa.selenium.WebDriver;
 import shop.navigation.NavigateTo;
 import shop.pages.login.LoginPage;
@@ -31,7 +33,8 @@ public class LoginStepDefinitions {
     @Entonces("{actor} valida que 'My account' se encuentre disponible")
     public void validarMyAccountEnPantalla(Actor actor) {
         actor.attemptsTo(
-                the(LoginPage.MY_ACCOUNT_BTN, isVisible()).forNoMoreThan(5).seconds()
+                the(LoginPage.MY_ACCOUNT_BTN, isVisible()).forNoMoreThan(5).seconds(),
+                Click.on(LoginPage.MY_ACCOUNT_BTN)
         );
        System.out.println("paso 2 - "+actor+"valida elemento");
     }
