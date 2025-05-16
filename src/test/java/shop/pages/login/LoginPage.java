@@ -15,7 +15,7 @@ public class LoginPage {
                 .located(By.xpath("//*[@id=\"widget-navbar-217834\"]/ul/li[6]/a/div/span"));
 
         public static final Target LOGIN_BTN = Target.the("Boton 'My account'")
-                .located(By.cssSelector("//*[@id='widget-navbar-217834']/ul/li[6]/ul/li[1]/a"));
+                .located(By.cssSelector("input.btn.btn-primary"));
 
 }
 
