@@ -10,6 +10,7 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import static net.serenitybdd.screenplay.waits.WaitUntil.the;
 
 import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.actions.Enter;
 import org.openqa.selenium.WebDriver;
 import shop.navigation.NavigateTo;
 import shop.pages.login.LoginPage;
@@ -35,24 +36,29 @@ public class LoginStepDefinitions {
     public void validarMyAccountEnPantalla(Actor actor) {
         actor.attemptsTo(
                 the(MY_ACCOUNT_BTN, isVisible()).forNoMoreThan(5).seconds(),
-                Click.on(MY_ACCOUNT_BTN),
-                the(EMAIL_FIELD , isVisible()).forNoMoreThan(5).seconds(),
-                the(PASSWORD_FIELD , isVisible()).forNoMoreThan(5).seconds(),
-                the(LOGIN_BTN , isVisible()).forNoMoreThan(5).seconds(),
-                Click.on(LOGIN_BTN)
+                Click.on(MY_ACCOUNT_BTN)
         );
        System.out.println("paso 2 - "+actor+"valida elemento y ingresa a login + valida elemento de Email y Password");
     }
-    @Cuando("{actor} valida campos email y password y boton login")
+    @Cuando("{actor} ingresa su email y hace clic en el botón Login")
     public void validarCamposEmailYPassword(Actor actor) {
         actor.attemptsTo(
                 the(EMAIL_FIELD , isVisible()).forNoMoreThan(5).seconds(),
+                Enter.theValue("francoosuna1822@gmail.com").into(EMAIL_FIELD),
                 the(PASSWORD_FIELD , isVisible()).forNoMoreThan(5).seconds(),
-                the(LOGIN_BTN , isVisible()).forNoMoreThan(5).seconds()
+                the(LOGIN_BTN , isVisible()).forNoMoreThan(5).seconds(),
+                Click.on(LOGIN_BTN)
+
         );
         System.out.println("paso 3 - "+actor+" valida elemento de Email y Password");
     }
-
+    @Entonces("{actor} debería ver un mensaje de error de inicio de sesión")
+    public void validarMensajeDeError(Actor actor) {
+        actor.attemptsTo(
+                the(ALERT_NOMATCHEMAILORPASSWORD , isVisible()).forNoMoreThan(5).seconds()
+        );
+        System.out.println("paso 4 - "+actor+" valida mensaje de error");
+    }
 
 
 

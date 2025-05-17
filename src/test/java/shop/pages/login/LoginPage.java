@@ -16,6 +16,7 @@ public class LoginPage {
 
         public static final Target LOGIN_BTN = Target.the("Boton 'My account'")
                 .located(By.cssSelector("input.btn.btn-primary"));
-
+        public static final Target ALERT_NOMATCHEMAILORPASSWORD = Target.the("Alerta de error")
+                .located(By.xpath("//*[@id=\"account-login\"]/div[1]"));
 }
 
