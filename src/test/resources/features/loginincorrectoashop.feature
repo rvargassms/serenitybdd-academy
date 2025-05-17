@@ -1,9 +1,5 @@
 # language: es
-  Característica: Validar el login incorrecto en la tienda
-    Como un usuario no registrado
-    Quiero validar el login incorrecto en la tienda
-    Para asegurarme de que no puedo acceder a mi cuenta sin registrarme
-
+  Característica: Validar Ingreso a la pagina de Shop
 
     @loginincorrecto
     Escenario: Ingresa al login de la tienda solo con email y le da al boton de login
