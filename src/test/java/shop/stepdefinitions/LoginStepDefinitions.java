@@ -59,7 +59,17 @@ public class LoginStepDefinitions {
         );
         System.out.println("paso 4 - "+actor+" valida mensaje de error");
     }
-
+    @Cuando("{actor} ingresa su password y hace clic en el botón Login")
+    public void ingresaPasswordyclickenlogin(Actor actor) {
+        actor.attemptsTo(
+                the(EMAIL_FIELD , isVisible()).forNoMoreThan(5).seconds(),
+                the(PASSWORD_FIELD , isVisible()).forNoMoreThan(5).seconds(),
+                Enter.theValue("Francogamer1822").into(PASSWORD_FIELD),
+                the(LOGIN_BTN , isVisible()).forNoMoreThan(5).seconds(),
+                Click.on(LOGIN_BTN)
+        );
+        System.out.println("paso 3 - "+actor+" valida elemento de Email y Password");
+    }
 
 
     @Cuando("{actor} se loguea en la pagina de la tienda")
