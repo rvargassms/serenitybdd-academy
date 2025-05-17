@@ -74,8 +74,9 @@ public class LoginStepDefinitions {
     public void ingresaEmailYPasswordclickenlogin(Actor actor) {
         actor.attemptsTo(
                 the(EMAIL_FIELD , isVisible()).forNoMoreThan(5).seconds(),
+                Enter.theValue("francoosuna12@gmail.com").into(EMAIL_FIELD),
                 the(PASSWORD_FIELD , isVisible()).forNoMoreThan(5).seconds(),
-                Enter.theValue("Francogamer1822").into(PASSWORD_FIELD),
+                Enter.theValue("Francogamer12").into(PASSWORD_FIELD),
                 the(LOGIN_BTN , isVisible()).forNoMoreThan(5).seconds(),
                 Click.on(LOGIN_BTN)
         );
