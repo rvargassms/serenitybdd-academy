@@ -15,6 +15,7 @@ import shop.pages.login.LoginPage;
 import shop.pages.registro.RegistroUsuarioPage;
 
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static net.serenitybdd.screenplay.waits.WaitUntil.the;
 import static shop.pages.login.LoginPage.BTN_REGISTER;
@@ -72,6 +73,15 @@ public class RegisterStepDef {
         the(ALERT_PASSWORD, isVisible()).forNoMoreThan(5).seconds();
         System.out.println("paso " + actor + "valida alerta de password");
 
+    }
+    @Cuando("{actor} completa el campo First Name")
+    public void completaElCampoFirstName(Actor actor) {
+        the(FIRST_NAME_FIELD, isVisible()).forNoMoreThan(5).seconds();
+        the(FIRST_NAME_FIELD, isClickable()).forNoMoreThan(5).seconds();
+        System.out.println("paso " + actor + "valida elemento de nombre");
+        actor.attemptsTo(Click.on(FIRST_NAME_FIELD));
+        Enter.theValue("Juan").into(FIRST_NAME_FIELD);
+        System.out.println("paso " + actor + "ingresa nombre");
     }
 
 }

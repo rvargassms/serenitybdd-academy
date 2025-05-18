@@ -3,7 +3,7 @@ import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 public class RegistroUsuarioPage {
     public static final Target FIRST_NAME_FIELD = Target.the("Campo de nombre")
-            .located(By.id("input-firstname"));
+            .located(By.xpath("//*[@id=\"account\"]/div[2]/div"));
 
     public static final Target LAST_NAME_FIELD = Target.the("Campo de apellido")
             .located(By.id("input-lastname"));
