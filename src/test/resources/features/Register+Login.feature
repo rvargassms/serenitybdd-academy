@@ -1,11 +1,8 @@
 # language: es
-  Característica: Validacion de campos obligatorios a la hora de registrarse
-    Como un usuario no registrado
-    Quiero validar los campos obligatorios a la hora de registrarme
-    Para asegurarme de que no puedo registrarme sin completar los campos obligatorios
+Característica: Validacion de campos obligatorios a la hora de registrarse
 
-    @camposobligatorios
-    Escenario: Ingresa al registro de la tienda sin completar ningun campo y le da al boton de Continue
-      Dado "Franco" ingresa a la pagina de la tienda sin registrarse
-      Entonces "Franco" valida que 'My account' se encuentre disponible
-    @camposobligatorios
+  @camposobligatorios
+  Escenario: Intenta registrarse sin completar ningún campo y valida alertas
+    Dado "Franco" está en la página de registro de la tienda
+    Cuando "Franco" hace clic en el botón 'Continue'
+    Entonces "Franco" debería ver un mensaje de error indicando en cada campo los campos son obligatorios
