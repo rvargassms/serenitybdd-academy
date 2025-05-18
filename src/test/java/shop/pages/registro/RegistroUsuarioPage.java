@@ -22,7 +22,10 @@ public class RegistroUsuarioPage {
 
     public static final Target PRIVACY_POLICY_CHECKBOX = Target.the("Checkbox de privacidad")
             .located(By.name("agree"));
-
+    public static final Target BTN_YES = Target.the("Botón de aceptar")
+            .located(By.xpath("//*[@id=\"content\"]/form/div/div/input[1]"));
+    public static final Target BTN_NO = Target.the("Botón de no aceptar")
+            .located(By.xpath("//*[@id=\"content\"]/form/div/div/input[2]"));
     public static final Target CONTINUE_BUTTON = Target.the("Botón continuar")
             .located(By.xpath("//*[@id=\"content\"]/form/div/div/input[2]"));
 }
