@@ -1,11 +1,12 @@
 package shop.pages.registro;
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
-public class RegistroUsuarioPage {
-    public static final Target FIRST_NAME_FIELD = Target.the("Campo de nombre")
-            .located(By.xpath("//*[@id=\"account\"]/div[2]/div"));
 
-    public static final Target LAST_NAME_FIELD = Target.the("Campo de apellido")
+public class RegistroUsuarioPage {
+    public static final Target FIRST_NAME_FIELD_REGISTER = Target.the("Campo de nombre")
+            .located(By.xpath("//*[@id='input-firstname']"));
+
+    public static final Target LAST_NAME_FIELD_REGISTER = Target.the("Campo de apellido")
             .located(By.id("input-lastname"));
 
     public static final Target EMAIL_FIELD_REGISTER = Target.the("Campo de email")
@@ -15,10 +16,10 @@ public class RegistroUsuarioPage {
             .located(By.id("input-telephone"));
 
     public static final Target PASSWORD_FIELD_REGISTER = Target.the("Campo de contraseña")
-            .located(By.id("input-pasword"));
+            .located(By.xpath("//*[@id='input-password']"));
 
     public static final Target CONFIRM_PASSWORD_FIELD = Target.the("Campo de confirmar contraseña")
-            .located(By.id("input-confirm"));
+            .located(By.xpath("//*[@id='input-firstname']"));
 
     public static final Target PRIVACY_POLICY_CHECKBOX = Target.the("Checkbox de privacidad")
             .located(By.name("agree"));

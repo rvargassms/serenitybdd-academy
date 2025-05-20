@@ -9,4 +9,8 @@ public class NavigateTo {
         return Task.where("{0} abre la pagina de la tienda",
                 Open.browserOn().the(ShopHomePage.class));
     }
+    public static Performable RegisterHomePage() {
+        return Task.where("{0} abre la pagina de registro",
+                Open.browserOn().the(RegisterHomePage.class));
+    }
 }

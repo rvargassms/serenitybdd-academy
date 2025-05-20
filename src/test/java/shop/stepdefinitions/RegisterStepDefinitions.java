@@ -1,48 +1,46 @@
 package shop.stepdefinitions;
-
+import io.cucumber.datatable.DataTable;
+import net.serenitybdd.screenplay.targets.Target;
 import io.cucumber.java.es.Cuando;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.es.Entonces;
+import io.cucumber.java.es.Y;
 import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.ensure.Ensure;
+import net.serenitybdd.screenplay.actions.JavaScriptClick;
+import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.WebDriver;
 import shop.navigation.NavigateTo;
-import shop.pages.login.LoginPage;
-import shop.pages.registro.RegistroUsuarioPage;
+import util.CampoMapper;
 
-import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import java.util.List;
+import java.util.Map;
+
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static net.serenitybdd.screenplay.waits.WaitUntil.the;
-import static shop.pages.login.LoginPage.BTN_REGISTER;
-import static shop.pages.login.LoginPage.MY_ACCOUNT_BTN;
 import static shop.pages.registro.RegistroUsuarioPage.*;
 
-public class RegisterStepDef {
+public class RegisterStepDefinitions {
     @Managed(driver = "chrome")
     WebDriver navegador;
 
     @Dado("{actor} está en la página de registro de la tienda")
     public void estáEnLaPáginaDeRegistroDeLaTienda(Actor actor) {
         actor.can(BrowseTheWeb.with(navegador));
-        actor.wasAbleTo(NavigateTo.ShopHomePage());
-        the(MY_ACCOUNT_BTN, isVisible()).forNoMoreThan(5).seconds();
-        actor.attemptsTo(Click.on(MY_ACCOUNT_BTN));
-        the(BTN_REGISTER, isVisible()).forNoMoreThan(5).seconds();
-        actor.attemptsTo(Click.on(BTN_REGISTER));
+        actor.wasAbleTo(NavigateTo.RegisterHomePage());
 
         System.out.println("paso " + actor + " está en la página de registro");
     }
 
     @Cuando("{actor} hace clic en el botón 'Continue'")
     public void haceClicEnElBotónContinue(Actor actor) {
-        the(FIRST_NAME_FIELD, isVisible()).forNoMoreThan(5).seconds();
+        the(FIRST_NAME_FIELD_REGISTER, isVisible()).forNoMoreThan(5).seconds();
         System.out.println("paso " + actor + "valida elemento de nombre");
-        the(LAST_NAME_FIELD, isVisible()).forNoMoreThan(5).seconds();
+        the(LAST_NAME_FIELD_REGISTER, isVisible()).forNoMoreThan(5).seconds();
         System.out.println("paso " + actor + "valida elemento de apellido");
         the(EMAIL_FIELD_REGISTER, isVisible()).forNoMoreThan(5).seconds();
         System.out.println("paso " + actor + "valida elemento de email");
@@ -76,12 +74,31 @@ public class RegisterStepDef {
     }
     @Cuando("{actor} completa el campo First Name")
     public void completaElCampoFirstName(Actor actor) {
-        the(FIRST_NAME_FIELD, isVisible()).forNoMoreThan(5).seconds();
-        the(FIRST_NAME_FIELD, isClickable()).forNoMoreThan(5).seconds();
+        the(FIRST_NAME_FIELD_REGISTER, isVisible()).forNoMoreThan(5).seconds();
+        the(FIRST_NAME_FIELD_REGISTER, isClickable()).forNoMoreThan(5).seconds();
         System.out.println("paso " + actor + "valida elemento de nombre");
-        actor.attemptsTo(Click.on(FIRST_NAME_FIELD));
-        Enter.theValue("Juan").into(FIRST_NAME_FIELD);
+        actor.attemptsTo(Click.on(FIRST_NAME_FIELD_REGISTER));
+        Enter.theValue("Juan").into(FIRST_NAME_FIELD_REGISTER);
         System.out.println("paso " + actor + "ingresa nombre");
+    }
+    @Y("{actor} completa el formulario con los siguientes datos:")
+    public void completarFormulario(Actor actor, DataTable dataTable) {
+        List<Map<String, String>> filas = dataTable.asMaps(String.class, String.class);
+
+        for (Map<String, String> fila : filas) {
+            String campo = fila.get("campo");
+            String valor = fila.get("valor");
+
+            Target target = CampoMapper.obtenerCampoPorTexto(campo);
+
+            actor.attemptsTo(
+                    JavaScriptClick.on(target),
+                    Click.on(target),
+                    Enter.theValue(valor).into(target),
+                    WaitUntil.the(target, isVisible()).forNoMoreThan(5).seconds()
+            );
+        }
     }
 
 }
+
