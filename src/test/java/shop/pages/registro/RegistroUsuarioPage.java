@@ -19,7 +19,7 @@ public class RegistroUsuarioPage {
             .located(By.xpath("//*[@id='input-password']"));
 
     public static final Target CONFIRM_PASSWORD_FIELD_REGISTER = Target.the("Campo de confirmar contraseña")
-            .located(By.xpath("//*[@id='input-firstname']"));
+            .located(By.xpath("//*[@id='input-confirm']"));
 
     public static final Target PRIVACY_POLICY_CHECKBOX = Target.the("Checkbox de privacidad")
             .located(By.name("agree"));
