@@ -14,7 +14,7 @@ public class CampoMapper {
         campos.put("Email", RegistroUsuarioPage.EMAIL_FIELD_REGISTER);
         campos.put("Telephone", RegistroUsuarioPage.TELEPHONE_FIELD);
         campos.put("Password", RegistroUsuarioPage.PASSWORD_FIELD_REGISTER);
-        campos.put("Confirm Password", RegistroUsuarioPage.CONFIRM_PASSWORD_FIELD);
+        campos.put("Confirm Password", RegistroUsuarioPage.CONFIRM_PASSWORD_FIELD_REGISTER);
     }
 
     public static Target obtenerCampoPorTexto(String nombreCampo) {

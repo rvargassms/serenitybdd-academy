@@ -14,12 +14,12 @@ import net.serenitybdd.screenplay.actions.JavaScriptClick;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.WebDriver;
 import shop.navigation.NavigateTo;
+import shop.tasks.RegisterTask;
 import util.CampoMapper;
 
 import java.util.List;
 import java.util.Map;
 
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 import static net.serenitybdd.screenplay.waits.WaitUntil.the;
 import static shop.pages.registro.RegistroUsuarioPage.*;
@@ -48,7 +48,7 @@ public class RegisterStepDefinitions {
         System.out.println("paso " + actor + "valida elemento de telefono");
         the(PASSWORD_FIELD_REGISTER, isVisible()).forNoMoreThan(5).seconds();
         System.out.println("paso " + actor + "valida elemento de password");
-        the(CONFIRM_PASSWORD_FIELD, isVisible()).forNoMoreThan(5).seconds();
+        the(CONFIRM_PASSWORD_FIELD_REGISTER, isVisible()).forNoMoreThan(5).seconds();
         System.out.println("paso " + actor + "valida elemento de confirmar password");
         the(PRIVACY_POLICY_CHECKBOX, isVisible()).forNoMoreThan(5).seconds();
         System.out.println("paso " + actor + "valida elemento de checkbox");
@@ -72,15 +72,6 @@ public class RegisterStepDefinitions {
         System.out.println("paso " + actor + "valida alerta de password");
 
     }
-    @Cuando("{actor} completa el campo First Name")
-    public void completaElCampoFirstName(Actor actor) {
-        the(FIRST_NAME_FIELD_REGISTER, isVisible()).forNoMoreThan(5).seconds();
-        the(FIRST_NAME_FIELD_REGISTER, isClickable()).forNoMoreThan(5).seconds();
-        System.out.println("paso " + actor + "valida elemento de nombre");
-        actor.attemptsTo(Click.on(FIRST_NAME_FIELD_REGISTER));
-        Enter.theValue("Juan").into(FIRST_NAME_FIELD_REGISTER);
-        System.out.println("paso " + actor + "ingresa nombre");
-    }
     @Y("{actor} completa el formulario con los siguientes datos:")
     public void completarFormulario(Actor actor, DataTable dataTable) {
         List<Map<String, String>> filas = dataTable.asMaps(String.class, String.class);
@@ -99,6 +90,13 @@ public class RegisterStepDefinitions {
             );
         }
     }
+    @Cuando("{actor} completa el formulario de registro")
+    public void completarFormularioRegistro(Actor actor) {
+        actor.attemptsTo(
+                RegisterTask.completarFormulario()
+        );
+    }
+
 
 }
 

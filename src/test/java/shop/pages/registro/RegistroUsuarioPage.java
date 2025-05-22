@@ -18,7 +18,7 @@ public class RegistroUsuarioPage {
     public static final Target PASSWORD_FIELD_REGISTER = Target.the("Campo de contraseña")
             .located(By.xpath("//*[@id='input-password']"));
 
-    public static final Target CONFIRM_PASSWORD_FIELD = Target.the("Campo de confirmar contraseña")
+    public static final Target CONFIRM_PASSWORD_FIELD_REGISTER = Target.the("Campo de confirmar contraseña")
             .located(By.xpath("//*[@id='input-firstname']"));
 
     public static final Target PRIVACY_POLICY_CHECKBOX = Target.the("Checkbox de privacidad")

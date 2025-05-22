@@ -10,6 +10,7 @@ Característica: Validacion de campos obligatorios a la hora de registrarse
   @registro
   Escenario: Registro de usuario
     Dado "Franco" está en la página de registro de la tienda
+    Cuando "Franco" completa el formulario de registro
     Y "Franco" completa el formulario con los siguientes datos:
       | campo       | valor         |
       | First Name  | Franco        |
@@ -18,5 +19,4 @@ Característica: Validacion de campos obligatorios a la hora de registrarse
       | Telephone   | 123456789     |
       | Password    | 123456        |
       | Confirm     | 123456        |
-
 
