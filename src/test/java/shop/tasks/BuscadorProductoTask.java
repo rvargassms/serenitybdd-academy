@@ -5,25 +5,24 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.Click;
-import shop.model.ActorUsuarioBusqueda;
 import shop.pages.home.HomePage;
 
-public class BuscarProductoTask implements Task {
+import static net.serenitybdd.screenplay.Tasks.instrumented;
 
-    private final ActorUsuarioBusqueda usuario;
+public class BuscadorProductoTask implements Task {
 
-    public BuscarProductoTask(ActorUsuarioBusqueda usuario) {
-        this.usuario = usuario;
+    public static BuscadorProductoTask terminoBusquedaRecordado() {
+        return instrumented(BuscadorProductoTask.class);
     }
 
-    public static BuscarProductoTask con(ActorUsuarioBusqueda usuario) {
-        return Tasks.instrumented(BuscarProductoTask.class, usuario);
-    }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
+
+        String termino = actor.recall("terminoBusqueda");
+
         actor.attemptsTo(
-                Enter.theValue(usuario.getTerminoBusqueda()).into(HomePage.SEARCH_INPUT),
+                Enter.theValue(termino).into(HomePage.SEARCH_INPUT),
                 Click.on(HomePage.SEARCH_BTN)
         );
     }
