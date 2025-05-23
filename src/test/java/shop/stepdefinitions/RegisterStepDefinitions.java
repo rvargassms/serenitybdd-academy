@@ -96,6 +96,24 @@ public class RegisterStepDefinitions {
                 RegisterTask.completarFormulario()
         );
     }
+    @Y("{actor} completa el formulario con los siguientes datos3:")
+    public void completarFormulario3(Actor actor, DataTable dataTable) {
+        // Solo una fila en Scenario Outline (porque cada ejecución tiene su propia tabla)
+        Map<String, String> fila = dataTable.asMaps().get(0);
+
+        for (Map.Entry<String, String> entrada : fila.entrySet()) {
+            String campo = entrada.getKey();
+            String valor = entrada.getValue();
+            Target target = CampoMapper.obtenerCampoPorTexto(campo);
+
+            actor.attemptsTo(
+                    JavaScriptClick.on(target),
+                    Click.on(target),
+                    Enter.theValue(valor).into(target),
+                    WaitUntil.the(target, isVisible()).forNoMoreThan(5).seconds()
+            );
+        }
+    }
 
 
 }
