@@ -45,4 +45,5 @@ public class RegisterTask implements Task {
                 Click.on(RegistroUsuarioPage.CONTINUE_BUTTON)
         );
     }
+
 }
