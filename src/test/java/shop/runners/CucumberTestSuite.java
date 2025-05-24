@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         plugin = {"pretty"},
         features = "src/test/resources/features",
         glue = "shop.stepdefinitions",
-        tags = "@Registro",
+        tags = "@loginincorrecto2",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class CucumberTestSuite {
